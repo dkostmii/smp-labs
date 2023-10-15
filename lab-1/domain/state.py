@@ -30,7 +30,9 @@ class CalculatorState:
     def add_history_entry(
         self, entry: HistoryEntry, config_opts: dict[str, Any]
     ) -> None:
-        while len(self.history) >= config_opts["history_count"]:
+        history_count = config_opts["history_count"]
+
+        while history_count > 0 and len(self.history) >= history_count:
             self.history.pop(0)
 
         self.history.append(entry)

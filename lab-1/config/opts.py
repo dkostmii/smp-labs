@@ -3,10 +3,23 @@ from os.path import exists
 from typing import Any, Callable
 
 from config.defaults import defaults
+from std.num_ext import try_parse_int
 
-validators: dict[str, Callable[[Any], bool]] = {
-    "decimals": lambda x: x > -1,
-    "history_count": lambda x: x > -1,
+
+def uint_validator(value: str) -> bool:
+    number = try_parse_int(value)
+    return isinstance(number, int) and number > -1
+
+
+validators: dict[str, Callable[[str], bool]] = {
+    "decimals": uint_validator,
+    "history_count": uint_validator,
+}
+
+
+parsers: dict[str, Callable[[str], Any]] = {
+    "decimals": try_parse_int,
+    "history_count": try_parse_int,
 }
 
 

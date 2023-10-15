@@ -1,12 +1,20 @@
-from typing import Callable, Any
+from typing import Any, Callable
+
 
 class Ok:
     def __init__(self, val):
         self.val = val
 
+
 class Err:
     def __init__(self, val):
         self.val = val
+
+    def __repr__(self) -> str:
+        msg = self.val if isinstance(self.val, str) else "Unknown error"
+
+        return f"Error: {msg}"
+
 
 class Result:
     def __init__(self, val):
@@ -22,7 +30,9 @@ class Result:
             case _:
                 raise Exception("Expected Ok or Err")
 
-    def map(self, ok_accessor: Callable[[Any], None], err_accessor: Callable[[Any], None]) -> None:
+    def map(
+        self, ok_accessor: Callable[[Any], None], err_accessor: Callable[[Any], None]
+    ) -> None:
         if self.is_ok:
             ok_accessor(self.ok_val)
         else:

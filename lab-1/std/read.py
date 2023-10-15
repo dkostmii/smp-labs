@@ -1,5 +1,6 @@
 import sys
-from typing import Callable, Any
+from typing import Any, Callable
+
 from std.num_ext import try_parse_float
 
 YES = "yes"
@@ -14,7 +15,12 @@ def input_wrapper(prompt: str = "") -> str:
         sys.exit(0)
 
 
-def read_until_pred_custom(custom_src: Callable[[str], Any], pred: Callable[[Any], bool], title: str = "", invalid_msg: str | None = None) -> Any:
+def read_until_pred_custom(
+    custom_src: Callable[[str], Any],
+    pred: Callable[[Any], bool],
+    title: str = "",
+    invalid_msg: str | None = None,
+) -> Any:
     val = custom_src(title)
 
     while not pred(val):
@@ -26,7 +32,9 @@ def read_until_pred_custom(custom_src: Callable[[str], Any], pred: Callable[[Any
     return val
 
 
-def read_until_pred(pred: Callable[[str], bool], title: str = "", invalid_msg: str | None = None) -> str:
+def read_until_pred(
+    pred: Callable[[str], bool], title: str = "", invalid_msg: str | None = None
+) -> str:
     val = read_until_pred_custom(input_wrapper, pred, title, invalid_msg)
     return val
 
@@ -72,8 +80,12 @@ def read_choose_from_list(options: list[str], title: str = "") -> str:
     for n, item in enumerate(options):
         print(f"{n + 1}. {item}")
 
-    option_n = read_until_pred_custom(read_single_num, lambda v: 0 < int(v) and int(v) <= len(options), "Your choice: ", "Invalid option number.")
+    option_n = read_until_pred_custom(
+        read_single_num,
+        lambda v: 0 < int(v) and int(v) <= len(options),
+        "Your choice: ",
+        "Invalid option number.",
+    )
     option_n = int(option_n)
 
     return options[option_n - 1]
-

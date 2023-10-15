@@ -1,5 +1,7 @@
-from calc import CalculatorState
 from typing import Any
+
+from domain.state import CalculatorState
+from std.result import Err
 
 
 def clear_memory_proc(config: dict[str, Any], state: CalculatorState) -> None:
@@ -14,7 +16,16 @@ def save_to_memory_proc(config: dict[str, Any], state: CalculatorState):
 
     entry = state.history[-1]
 
-    if entry.result is None:
-        print("Last operation has error. Please perform new operation to save to memory.")
+    if entry.result is str or entry.result is Err:
+        print(
+            "Last operation has error. Please perform new operation to save to memory."
+        )
+        return
 
-    state.save_to_memory(entry.result)
+    try:
+        value: float = float(entry.result)
+        state.save_to_memory(value)
+    except ValueError:
+        print(
+            "Last operation has error. Please perform new operation to save to memory."
+        )

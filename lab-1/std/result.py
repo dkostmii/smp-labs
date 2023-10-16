@@ -17,6 +17,9 @@ class Err:
 
 
 class Result:
+    ok_val: Ok | None
+    err_val: Err | None
+
     def __init__(self, val):
         self.is_ok = False
         match val:

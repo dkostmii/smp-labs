@@ -28,13 +28,13 @@ def validate_opts(opts: dict[str, Any]) -> None:
         if key not in defaults:
             raise Exception(f"Invalid config option: {key}")
 
-        validator = validators[key]
+        validate = validators[key]
         value = opts[key]
-        is_valid = validator(value)
+        is_valid = validate(value)
 
         if not is_valid:
             raise Exception(
-                f"Invalid config value for key {key}. The value is: ${value}"
+                f"Invalid config value for key {key}. The value is: {value}"
             )
 
 
@@ -45,6 +45,7 @@ def read_opts(config_file: str = ".calcrc.json") -> dict[str, Any]:
     with open(config_file, "r") as f:
         opts = json.load(f)
         merged = {**defaults, **opts}
+        validate_opts(merged)
 
         return merged
 

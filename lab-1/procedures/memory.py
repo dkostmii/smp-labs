@@ -4,12 +4,14 @@ from domain.state import CalculatorState
 from std.result import Err
 
 
-def clear_memory_proc(config: dict[str, Any], state: CalculatorState) -> None:
+def clear_memory_proc(_: dict[str, Any], state: CalculatorState) -> None:
     if state.has_in_memory():
         state.clear_memory()
+    else:
+        print("Nothing to clear.")
 
 
-def save_to_memory_proc(config: dict[str, Any], state: CalculatorState):
+def save_to_memory_proc(_: dict[str, Any], state: CalculatorState):
     if len(state.history) < 1:
         print("Nothing to write to memory. No operation performed.")
         return

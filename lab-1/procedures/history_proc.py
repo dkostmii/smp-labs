@@ -13,7 +13,7 @@ def display_history_proc(config: dict[str, Any], state: CalculatorState) -> None
         print("History entries are:")
     else:
         print(f"Last {history_count} entries are:")
-        entries = state.history[: history_count - 1]
+        entries = entries[-history_count:]
 
     for entry in entries:
         entry_str = entry.fmt(config)

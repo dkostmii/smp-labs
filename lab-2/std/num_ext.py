@@ -5,7 +5,7 @@ def try_parse_float(str_val: str) -> float | None:
         return None
 
 
-def try_parse_int(str_val: str) -> float | None:
+def try_parse_int(str_val: str) -> int | None:
     try:
         return int(str_val)
     except ValueError:

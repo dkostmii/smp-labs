@@ -1,7 +1,7 @@
 import sys
 from typing import Any, Callable
 
-from std.num_ext import try_parse_float
+from std.num_ext import try_parse_float, try_parse_int
 
 YES = "yes"
 NO = "no"
@@ -62,6 +62,18 @@ def read_yes_no(title: str = "", default: bool = False) -> bool:
     return val != no_str if default else val == yes_str
 
 
+def read_single_int(title: str = "") -> int:
+    num_str = input_wrapper(title)
+    num = try_parse_int(num_str)
+
+    while num is None:
+        print("Enter a valid number.")
+        num_str = input_wrapper(title)
+        num = try_parse_int(num_str)
+
+    return num
+
+
 def read_single_num(title: str = "") -> float:
     num_str = input_wrapper(title)
     num = try_parse_float(num_str)
@@ -81,11 +93,10 @@ def read_choose_from_list(options: list[str], title: str = "") -> str:
         print(f"{n + 1}. {item}")
 
     option_n = read_until_pred_custom(
-        read_single_num,
-        lambda v: 0 < int(v) and int(v) <= len(options),
+        read_single_int,
+        lambda v: 0 < int(v) <= len(options),
         "Your choice: ",
         "Invalid option number.",
     )
-    option_n = int(option_n)
 
     return options[option_n - 1]

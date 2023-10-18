@@ -29,14 +29,15 @@ def render(state: AppState) -> str:
     if len(state.color) > 0:
         rendered_text = f"{color}{rendered_text}{style('reset')}"
 
-    rendered_text_lines = list(filter(lambda line: len(line) > 0, rendered_text.split("\n")))
+    rendered_text_lines = list(
+        filter(lambda line: len(line) > 0, rendered_text.split("\n"))
+    )
     max_line_width = max([len(line) for line in rendered_text_lines])
     padding_left_size = ceil((width - max_line_width) / 2)
 
     if padding_left_size > 0:
         rendered_text_lines = [
-            pad_left(text=line, count=padding_left_size)
-            for line in rendered_text_lines
+            pad_left(text=line, count=padding_left_size) for line in rendered_text_lines
         ]
 
     rendered_text_height = len(rendered_text_lines)

@@ -1,6 +1,6 @@
 from lab4.domain.config import Config
-from lab4.domain.types import Size
 from lab4.domain.text_renderer import ALIGN_LEFT
+from lab4.domain.types import Size
 
 
 class AppState:

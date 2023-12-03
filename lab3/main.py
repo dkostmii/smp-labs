@@ -1,8 +1,8 @@
 from lab3.actions import actions
 from lab3.config import read_config
 from lab3.domain.app import App
-from runner import Runner
 from lab3.domain.config import Config
+from runner import Runner
 
 
 def main():

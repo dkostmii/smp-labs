@@ -2,25 +2,29 @@ from os import get_terminal_size
 
 from lab4.domain.config import Config
 from lab4.domain.state import AppState
-from std.read import (input_wrapper, read_choose_from_list, read_single_int,
-                      read_until_pred, read_until_pred_custom, read_single_float)
-
-from lab4.domain.term_color import fore, style, InvalidColor
-from lab4.domain.text_renderer import ALIGN_LEFT, ALIGN_CENTER, ALIGN_RIGHT
+from lab4.domain.term_color import InvalidColor, fore, style
+from lab4.domain.text_renderer import ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT
+from std.read import (
+    input_wrapper,
+    read_single_float,
+    read_single_int,
+    read_until_pred,
+    read_until_pred_custom,
+)
 
 
 def text_alignment_action(_: Config, state: AppState):
     alignment_name = read_until_pred(
-        pred=lambda name: name.lower() in ['left', 'center', 'right'],
+        pred=lambda name: name.lower() in ["left", "center", "right"],
         title="How to align a text? [left, center, right]",
-        invalid_msg="Alignment must be left, center or right"
+        invalid_msg="Alignment must be left, center or right",
     )
 
-    if alignment_name == 'left':
+    if alignment_name == "left":
         state.alignment = ALIGN_LEFT
-    elif alignment_name == 'center':
+    elif alignment_name == "center":
         state.alignment = ALIGN_CENTER
-    elif alignment_name == 'right':
+    elif alignment_name == "right":
         state.alignment = ALIGN_RIGHT
     else:
         raise Exception("Invalid alignment value.")
@@ -31,7 +35,7 @@ def font_size_action(_: Config, state: AppState):
         custom_src=read_single_int,
         pred=lambda value: value > 0,
         title="Enter font size (must be positive)",
-        invalid_msg="Font size must be positive"
+        invalid_msg="Font size must be positive",
     )
 
     state.font_size = font_size
@@ -42,7 +46,7 @@ def width_factor_action(_: Config, state: AppState):
         custom_src=read_single_float,
         pred=lambda value: 0.5 <= value <= 2,
         title="Enter font width factor [0.5-2]",
-        invalid_msg="Font width factor must be in range 0.5-2"
+        invalid_msg="Font width factor must be in range 0.5-2",
     )
 
     state.width_factor = width_factor
@@ -53,7 +57,7 @@ def stroke_width_action(_: Config, state: AppState):
         custom_src=read_single_float,
         pred=lambda value: 0.25 <= value <= 20,
         title="Enter stroke width [0.25-20]",
-        invalid_msg="Font width factor must be in range 0.25-20"
+        invalid_msg="Font width factor must be in range 0.25-20",
     )
 
     state.stroke_width = stroke_width
@@ -64,7 +68,7 @@ def gap_action(_: Config, state: AppState):
         custom_src=read_single_int,
         pred=lambda value: 0 <= value,
         title="Enter gap size (must be non-negative)",
-        invalid_msg="Gap size must non-negative"
+        invalid_msg="Gap size must non-negative",
     )
 
     state.gap = gap
@@ -77,9 +81,7 @@ def text_color_action(_: Config, state: AppState):
         print(f"Current color: {fore(state.color)}{state.color}{style('reset')}")
 
     while invalid:
-        color_input = input_wrapper(
-            "Enter a color name [red, green or blue]: "
-        )
+        color_input = input_wrapper("Enter a color name [red, green or blue]: ")
 
         if len(color_input) < 1:
             state.color = ""
@@ -130,8 +132,12 @@ def set_size_action(_: Config, state: AppState):
         height = -1
 
     state.size = (width, height)
-    print(f"Changed width to {state.size[0] if state.size[0] > 0 else '[default width]'}")
-    print(f"Changed height to {state.size[1] if state.size[1] > 0 else '[default height]'}")
+    print(
+        f"Changed width to {state.size[0] if state.size[0] > 0 else '[default width]'}"
+    )
+    print(
+        f"Changed height to {state.size[1] if state.size[1] > 0 else '[default height]'}"
+    )
 
 
 def symbol_action(_: Config, state: AppState):
@@ -141,7 +147,7 @@ def symbol_action(_: Config, state: AppState):
     symbol = read_until_pred(
         pred=lambda s: len(s) <= 1,
         title="Enter a symbol to draw art with (no symbol sets default symbol for a font): ",
-        invalid_msg=f"Expect at most 1 symbol",
+        invalid_msg="Expect at most 1 symbol",
     )
 
     state.symbol = symbol

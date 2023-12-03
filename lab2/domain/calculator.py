@@ -1,7 +1,6 @@
+from domain.action import Action, ActionCallable
 from lab2.config.opts import read_opts
-from domain.action import Action
 from lab2.domain.state import CalculatorState
-from domain.action import ActionCallable
 from runner import AppBase
 
 

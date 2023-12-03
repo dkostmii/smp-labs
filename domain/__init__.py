@@ -1,5 +1,3 @@
 from . import action
 
-__all__ = [
-    "action"
-]
+__all__ = ["action"]

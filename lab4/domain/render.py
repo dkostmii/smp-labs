@@ -1,11 +1,10 @@
+import json
 from os import get_terminal_size
 
 from lab4.domain.state import AppState
-from lab4.domain.text_renderer import TextRenderer, TextRendererOptions
 from lab4.domain.term_color import fore, style
+from lab4.domain.text_renderer import TextRenderer, TextRendererOptions
 from lab4.domain.types import Point
-
-import json
 
 
 def render(state: AppState) -> str:

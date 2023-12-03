@@ -1,6 +1,7 @@
 from dataclasses import dataclass
+
+from domain.action import ActionCallable, Config, State, request_action
 from std.repeat import repeat_while_requested
-from domain.action import request_action, Config, State, ActionCallable
 
 
 class AppBase:
@@ -11,6 +12,7 @@ class AppBase:
 
     def perform_action(self, action: ActionCallable):
         action(config=self.config, state=self.state)
+
 
 @dataclass
 class RunnerOptions:

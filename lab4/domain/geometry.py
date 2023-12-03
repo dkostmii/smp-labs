@@ -1,16 +1,22 @@
-from lab4.domain.types import Point, Trace, Size, SizeF, Line
 from math import sqrt
-from std.math import map, get_window
+
+from lab4.domain.types import Line, Point, SizeF
+from std.math import get_window, map
 
 
 # Assume points are [0, width] and [0, height]
-def map_point(point: Point,
-              width_input: float, height_input: float,
-              width_output: float, height_output: float) -> Point:
+def map_point(
+    point: Point,
+    width_input: float,
+    height_input: float,
+    width_output: float,
+    height_output: float,
+) -> Point:
     return (
-            map(point[0], 0, width_input, 0, width_output - 1),
-            map(point[1], 0, height_input, 0, height_output - 1),
-        )
+        map(point[0], 0, width_input, 0, width_output - 1),
+        map(point[1], 0, height_input, 0, height_output - 1),
+    )
+
 
 def calc_offset(stroke_width: float) -> float:
     return stroke_width * sqrt(2) / 2
@@ -47,8 +53,10 @@ def is_on_line(point: Point, line: Line, stroke_width: float):
 
     result = (
         dist <= stroke_radius
-        and xp >= x1 - stroke_radius and xp <= x2 + stroke_radius
-        and yp >= y1 - stroke_radius and yp <= y2 + stroke_radius
+        and xp >= x1 - stroke_radius
+        and xp <= x2 + stroke_radius
+        and yp >= y1 - stroke_radius
+        and yp <= y2 + stroke_radius
     )
 
     return result
@@ -62,6 +70,5 @@ def scale_vertices(glyph_vertices: list[Point], size: SizeF) -> list[Point]:
 
 def get_lines(vertices: list[Point]) -> list[Line]:
     return [
-        tuple(get_window(2, offset, vertices))
-        for offset in range(len(vertices) - 1)
+        tuple(get_window(2, offset, vertices)) for offset in range(len(vertices) - 1)
     ]

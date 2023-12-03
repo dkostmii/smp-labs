@@ -1,6 +1,7 @@
 from dataclasses import dataclass
-from lab4.domain.geometry import scale_vertices, is_on_line, get_lines
-from lab4.domain.types import Point, Trace, Size
+
+from lab4.domain.geometry import get_lines, is_on_line, scale_vertices
+from lab4.domain.types import Point, Size, Trace
 
 ALIGN_LEFT = 0
 ALIGN_CENTER = 1
@@ -19,8 +20,8 @@ class Glyph:
         scaled_vertices = scale_vertices(self.glyph_vertices, (width, height))
 
         result: list[list[bool]] = [
-                    [False for _ in range(0, width)] for _ in range(0, height)
-                ]
+            [False for _ in range(0, width)] for _ in range(0, height)
+        ]
 
         lines = get_lines(scaled_vertices)
 
@@ -41,7 +42,7 @@ class TextRendererOptions:
     glyph_width_factor: float
     symbol: str
     font_dict: dict[str, list[Point]]
-    color: str = ''
+    color: str = ""
     alignment: int = ALIGN_LEFT
     stroke_width: float = 1
     gap: int = 1
@@ -59,13 +60,16 @@ class TextRenderer:
     def __init__(self, options: TextRendererOptions):
         self.options = options
 
-
     def trace_glyphs(self, glyphs: list[Glyph], render_params: RenderParams) -> Trace:
         glyphs_len = len(glyphs)
-        text_width = glyphs_len * render_params.glyph_width + (glyphs_len - 1) * self.options.gap
+        text_width = (
+            glyphs_len * render_params.glyph_width + (glyphs_len - 1) * self.options.gap
+        )
         text_height = render_params.glyph_height
 
-        trace_result: Trace = [[False for _ in range(text_width)] for _ in range(text_height)]
+        trace_result: Trace = [
+            [False for _ in range(text_width)] for _ in range(text_height)
+        ]
 
         for id, glyph in enumerate(glyphs):
             offset = id * render_params.glyph_width
@@ -75,14 +79,14 @@ class TextRenderer:
 
             glyph_trace = glyph.trace(
                 size=(render_params.glyph_width, render_params.glyph_height),
-                stroke_width=self.options.stroke_width)
+                stroke_width=self.options.stroke_width,
+            )
 
             for y in range(render_params.glyph_height):
                 for x in range(render_params.glyph_width):
                     trace_result[y][x + offset] = glyph_trace[y][x]
 
         return trace_result
-
 
     def render(self, text: str) -> str:
         if len(text) < 1 or len(self.options.symbol) < 1:
@@ -92,31 +96,27 @@ class TextRenderer:
         text = text.lower()
         text_chars = list(text)
 
-        text = "".join(
-            [(chr if chr in letters else "_") for chr in text_chars]
-        )
+        text = "".join([(chr if chr in letters else "_") for chr in text_chars])
 
         text_chars = text.split()
 
         render_params = self.calculate_render_params(text_length=len(text))
         trace_result = self.trace_glyphs(
-            glyphs=[
-                Glyph(glyph_vertices=self.options.font_dict[chr]) for chr in text
-            ],
-            render_params=render_params
+            glyphs=[Glyph(glyph_vertices=self.options.font_dict[chr]) for chr in text],
+            render_params=render_params,
         )
 
         rendered_text = ""
         for row in trace_result:
-            rendered_row = "".join([(self.options.symbol[0] if is_match else ' ') for is_match in row])
+            rendered_row = "".join(
+                [(self.options.symbol[0] if is_match else " ") for is_match in row]
+            )
             rendered_text += self.format_row(rendered_row, render_params) + "\n"
 
         return self.format_rendered_text(rendered_text.rstrip(), render_params)
 
-
     def calculate_render_params(self, text_length: int) -> RenderParams:
-        glyph_width = int(
-            self.options.glyph_height * self.options.glyph_width_factor)
+        glyph_width = int(self.options.glyph_height * self.options.glyph_width_factor)
 
         left_padding = 0
         vert_padding = 0
@@ -132,15 +132,12 @@ class TextRenderer:
             glyph_width=glyph_width,
             glyph_height=self.options.glyph_height,
             left_padding=left_padding,
-            vert_padding=vert_padding
+            vert_padding=vert_padding,
         )
-
 
     def format_rendered_text(self, text: str, render_params: RenderParams) -> str:
         padding = "\n" * render_params.vert_padding
         return padding + text + padding
 
-
     def format_row(self, row: str, render_params: RenderParams) -> str:
         return " " * render_params.left_padding + row
-

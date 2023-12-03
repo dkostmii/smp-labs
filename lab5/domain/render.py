@@ -1,9 +1,9 @@
 from os import get_terminal_size
 
-from lab5.domain.state import AppState
-from lab5.domain.object_renderer import ObjectRenderer, ObjectRendererOptions
-from lab5.domain.term_color import fore, style
 from lab5.domain.object_dict import get_object_dict
+from lab5.domain.object_renderer import ObjectRenderer, ObjectRendererOptions
+from lab5.domain.state import AppState
+from lab5.domain.term_color import fore, style
 
 
 def render(state: AppState) -> str:

@@ -1,7 +1,4 @@
-from . import (
-    app, config, geometry, render, state,
-    term_color, text_renderer, types
-)
+from . import app, config, geometry, render, state, term_color, text_renderer, types
 
 __all__ = [
     "app",
@@ -11,5 +8,5 @@ __all__ = [
     "state",
     "term_color",
     "text_renderer",
-    "types"
+    "types",
 ]

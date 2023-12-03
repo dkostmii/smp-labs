@@ -1,6 +1,5 @@
-from lab4.config import read_config
 from lab4.actions import actions
-from domain.action import Action, AggregateAction
+from lab4.config import read_config
 from lab4.domain.app import App, Runner
 from lab4.domain.config import Config
 

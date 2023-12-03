@@ -5,8 +5,13 @@ from colored.exceptions import InvalidColor, InvalidHexColor
 
 from lab3.domain.config import Config
 from lab3.domain.state import AppState
-from std.read import (input_wrapper, read_choose_from_list, read_single_int,
-                      read_until_pred, read_until_pred_custom)
+from std.read import (
+    input_wrapper,
+    read_choose_from_list,
+    read_single_int,
+    read_until_pred,
+    read_until_pred_custom,
+)
 
 
 def font_action(config: Config, state: AppState):
@@ -95,7 +100,7 @@ def symbol_action(config: Config, state: AppState):
     symbol = read_until_pred(
         pred=lambda s: len(s) <= 1,
         title="Enter a symbol to draw art with (no symbol sets default symbol for a font): ",
-        invalid_msg=f"Expect at most 1 symbol",
+        invalid_msg="Expect at most 1 symbol",
     )
 
     state.symbol = symbol

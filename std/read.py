@@ -1,7 +1,7 @@
 import sys
 from typing import Any, Callable
 
-from std.num_ext import try_parse_int, try_parse_float
+from std.num_ext import try_parse_float, try_parse_int
 
 YES = "yes"
 NO = "no"
@@ -115,7 +115,7 @@ def read_list_of(
     repeat_pred: Callable[[list[Any]], bool],
     pred: Callable[[list[Any]], bool],
     title: str = "",
-    invalid_msg: str | None = None
+    invalid_msg: str | None = None,
 ) -> list[Any]:
     result: list[Any] = []
 

@@ -1,7 +1,7 @@
 from lab5.domain.config import Config
-from lab5.domain.types import Size
-from lab5.domain.object_renderer import ALIGN_LEFT, ProjectionParams
 from lab5.domain.object_dict import get_object_dict
+from lab5.domain.object_renderer import ALIGN_LEFT, ProjectionParams
+from lab5.domain.types import Size
 
 
 class AppState:

@@ -1,6 +1,13 @@
 from . import (
-    app, config, geometry, render, state,
-    term_color, object_renderer, object_dict, types
+    app,
+    config,
+    geometry,
+    object_dict,
+    object_renderer,
+    render,
+    state,
+    term_color,
+    types,
 )
 
 __all__ = [
@@ -12,5 +19,5 @@ __all__ = [
     "term_color",
     "object_renderer",
     "object_dict",
-    "types"
+    "types",
 ]

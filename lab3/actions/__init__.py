@@ -1,10 +1,14 @@
+from domain.action import Action, AggregateAction
 from lab3.actions.exit_action import exit_action
 from lab3.actions.input_action import input_action
+from lab3.actions.options import (
+    font_action,
+    set_size_action,
+    symbol_action,
+    text_color_action,
+)
 from lab3.actions.preview_action import preview_action
 from lab3.actions.save_action import save_action
-
-from lab3.actions.options import font_action, text_color_action, set_size_action, symbol_action
-from domain.action import AggregateAction, Action
 
 actions = [
     AggregateAction(
@@ -22,6 +26,4 @@ actions = [
     Action(name="Exit", action_fn=exit_action),
 ]
 
-__all__ = [
-    "actions"
-]
+__all__ = ["actions"]

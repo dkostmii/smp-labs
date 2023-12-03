@@ -74,7 +74,7 @@ def read_single_int(title: str = "") -> int:
     return num
 
 
-def read_single_float(title: str = "") -> int:
+def read_single_float(title: str = "") -> float:
     num_str = input_wrapper(title)
     num = try_parse_float(num_str)
 
@@ -108,6 +108,37 @@ def read_choose_from_list(
     )
 
     return options[option_n - 1]
+
+
+def read_list_of(
+    custom_src: Callable[[str], Any],
+    repeat_pred: Callable[[list[Any]], bool],
+    pred: Callable[[list[Any]], bool],
+    title: str = "",
+    invalid_msg: str | None = None
+) -> list[Any]:
+    result: list[Any] = []
+
+    count = 0
+
+    while not repeat_pred(result):
+        item = custom_src(f"{title} ({count}): ")
+        result.append(item)
+        count += 1
+
+    while not pred(result):
+        if invalid_msg is not None:
+            print(invalid_msg)
+
+        result = []
+        count = 0
+
+        while not repeat_pred(result):
+            item = custom_src(f"{title} ({count}): ")
+            result.append(item)
+            count += 1
+
+    return result
 
 
 def is_writable(filename: str) -> bool:

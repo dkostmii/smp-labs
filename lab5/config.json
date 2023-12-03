@@ -1,0 +1,6 @@
+{
+  "text": {
+    "maxLength": 100,
+    "default": "Hello, World!"
+  }
+}

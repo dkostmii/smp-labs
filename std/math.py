@@ -5,7 +5,7 @@ def map(value: float, min_input: float, max_input: float, min_output: float, max
     return out_value
 
 
-def get_window(window_size: float, offset: float, items: list) -> list:
+def get_window(window_size: int, offset: float, items: list) -> list:
     if offset < 0:
         raise Exception("Too small offset")
 
@@ -13,3 +13,10 @@ def get_window(window_size: float, offset: float, items: list) -> list:
         raise Exception("Too large offset")
 
     return items[offset:(offset + window_size)]
+
+
+def sign(num: float) -> float:
+    if num == 0:
+        return 0
+
+    return num / abs(num)

@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 from lab4.domain.geometry import scale_vertices, is_on_line, get_lines
 from lab4.domain.types import Point, Trace, Size
-from lab4.domain.term_color import fore, style
 
 ALIGN_LEFT = 0
 ALIGN_CENTER = 1

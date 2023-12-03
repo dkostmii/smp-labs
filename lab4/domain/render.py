@@ -1,11 +1,9 @@
-from math import ceil, floor
 from os import get_terminal_size
-from re import sub
 
 from lab4.domain.state import AppState
 from lab4.domain.text_renderer import TextRenderer, TextRendererOptions
 from lab4.domain.term_color import fore, style
-from std.str_ext import pad_bottom, pad_left, pad_top
+from lab4.domain.types import Point
 
 import json
 
@@ -32,8 +30,8 @@ def render(state: AppState) -> str:
         font_dict=font_dict,
         alignment=state.alignment,
         symbol=state.symbol,
-        stroke_width=2,
-        gap=2
+        stroke_width=state.stroke_width,
+        gap=state.gap,
     )
 
     renderer = TextRenderer(options)

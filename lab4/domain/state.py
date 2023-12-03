@@ -11,7 +11,8 @@ class AppState:
     font_size: int
     stroke_width: float
     symbol: str
-    alignment: str
+    alignment: int
+    gap: int
 
     def __init__(self):
         self.text = ""
@@ -22,6 +23,7 @@ class AppState:
         self.stroke_width = 1.0
         self.symbol = "@"
         self.alignment = ALIGN_LEFT
+        self.gap = 1
 
 
 def init_state(state: AppState, config: Config) -> AppState:

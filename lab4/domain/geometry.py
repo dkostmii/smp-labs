@@ -54,7 +54,7 @@ def is_on_line(point: Point, line: Line, stroke_width: float):
     return result
 
 
-def scale_vertices(glyph_vertices: list[Point], size: SizeF) -> list[tuple[float, float]]:
+def scale_vertices(glyph_vertices: list[Point], size: SizeF) -> list[Point]:
     (width, height) = size
 
     return [map_point(p, 1, 1, width, height) for p in glyph_vertices]

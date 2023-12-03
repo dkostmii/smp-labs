@@ -26,7 +26,7 @@ def text_alignment_action(_: Config, state: AppState):
         raise Exception("Invalid alignment value.")
 
 
-def font_size_action(config: Config, state: AppState):
+def font_size_action(_: Config, state: AppState):
     font_size = read_until_pred_custom(
         custom_src=read_single_int,
         pred=lambda value: value > 0,
@@ -64,7 +64,7 @@ def gap_action(_: Config, state: AppState):
         custom_src=read_single_int,
         pred=lambda value: 0 <= value,
         title="Enter gap size (must be non-negative)",
-        invalid_msg="Font size must non-negative"
+        invalid_msg="Gap size must non-negative"
     )
 
     state.gap = gap
@@ -130,11 +130,11 @@ def set_size_action(_: Config, state: AppState):
         height = -1
 
     state.size = (width, height)
-    print(f"Changed width to {state.size[0]}")
-    print(f"Changed width to {state.size[1]}")
+    print(f"Changed width to {state.size[0] if state.size[0] > 0 else '[default width]'}")
+    print(f"Changed height to {state.size[1] if state.size[1] > 0 else '[default height]'}")
 
 
-def symbol_action(config: Config, state: AppState):
+def symbol_action(_: Config, state: AppState):
     if state.symbol:
         print(f"Current symbol: {state.symbol[0]}")
 

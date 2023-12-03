@@ -4,6 +4,7 @@ from lab2.main import main as lab2_main
 from lab3.main import main as lab3_main
 from lab4.main import main as lab4_main
 from lab5.main import main as lab5_main
+from lab6.main import main as lab6_main
 from runner import AppBase, Runner, RunnerOptions
 
 
@@ -21,6 +22,7 @@ def main():
             Action(name="Lab 3", action_fn=lambda *_: lab3_main()),
             Action(name="Lab 4", action_fn=lambda *_: lab4_main()),
             Action(name="Lab 5", action_fn=lambda *_: lab5_main()),
+            Action(name="Lab 6", action_fn=lambda *_: lab6_main()),
         ]
     )
 

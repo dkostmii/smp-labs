@@ -1,11 +1,11 @@
 from domain.action import Action, ActionCallable
-from lab1.main import main as lab1_main
-from lab2.main import main as lab2_main
-from lab3.main import main as lab3_main
-from lab4.main import main as lab4_main
-from lab5.main import main as lab5_main
-from lab6.main import main as lab6_main
-from runner import AppBase, Runner, RunnerOptions
+from domain.runner import AppBase, Runner, RunnerOptions
+from labs.lab1.main import main as lab1_main
+from labs.lab2.main import main as lab2_main
+from labs.lab3.main import main as lab3_main
+from labs.lab4.main import main as lab4_main
+from labs.lab5.main import main as lab5_main
+from labs.lab6.main import main as lab6_main
 
 
 class MainApp(AppBase):

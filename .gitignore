@@ -1,4 +1,3 @@
 __pycache__
 *.odt
-.calchist
-.calcrc.json
+.data

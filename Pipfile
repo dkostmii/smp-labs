@@ -6,6 +6,14 @@ name = "pypi"
 [packages]
 pyfiglet = "*"
 colored = "*"
+marshmallow-dataclass = "*"
+marshmallow = "*"
+colorama = "*"
+pandas = "*"
+prettytable = "*"
+requests = "*"
+regex = "*"
+matplotlib = "*"
 
 [dev-packages]
 mypy = "*"

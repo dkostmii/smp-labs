@@ -1,3 +1,7 @@
+"""
+This module contains common types used in the application
+"""
+
 Point = tuple[float, float]
 Line = tuple[Point, Point]
 

@@ -142,13 +142,19 @@ def read_list_of(
 
 
 def is_writable(filename: str) -> bool:
-    with open(filename, "a") as f:
-        return f.writable()
+    try:
+        with open(filename, "a") as f:
+            return f.writable()
+    except IOError:
+        return False
 
 
 def is_readable(filename: str) -> bool:
-    with open(filename, "r") as f:
-        return f.readable()
+    try:
+        with open(filename, "r") as f:
+            return f.readable()
+    except IOError:
+        return False
 
 
 def read_filename(
@@ -168,10 +174,10 @@ def read_filename(
             permissions = []
 
             if check_writable:
-                permissions.append("read")
+                permissions.append("write")
 
             if check_readable:
-                permissions.append("write")
+                permissions.append("read")
 
             permissions_caption = " and ".join(permissions)
             print(

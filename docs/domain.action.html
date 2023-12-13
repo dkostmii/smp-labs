@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module domain.action</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title"><a href="domain.html" class="white">domain</a>.action</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:/home/dkostmii/Projects/smp-labs/domain/action.py">/home/dkostmii/Projects/smp-labs/domain/action.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="logging.html">logging</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="builtins.html#object">builtins.object</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="domain.action.html#ActionCallable">ActionCallable</a>
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="domain.action.html#Action">Action</a>
+</dt><dt class="heading-text"><a href="domain.action.html#AggregateAction">AggregateAction</a>
+</dt></dl>
+</dd>
+</dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="Action">class <strong>Action</strong></a>(<a href="domain.action.html#ActionCallable">ActionCallable</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#Action">Action</a>(name:&nbsp;str,&nbsp;action_fn:&nbsp;Callable[[Any,&nbsp;Any],&nbsp;NoneType])<br>
+&nbsp;<br>
+Represents&nbsp;a&nbsp;single&nbsp;action&nbsp;that&nbsp;is&nbsp;performed&nbsp;by&nbsp;runner.<br>
+&nbsp;<br>
+Attributes:<br>
+name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;action&nbsp;displayed&nbsp;in&nbsp;UI<br>
+action_fn&nbsp;A&nbsp;function&nbsp;to&nbsp;call&nbsp;to&nbsp;perform&nbsp;the&nbsp;action<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="domain.action.html#Action">Action</a></dd>
+<dd><a href="domain.action.html#ActionCallable">ActionCallable</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Action-__call__"><strong>__call__</strong></a>(self, config: Any, state: Any) -&gt; None</dt><dd><span class="code">Call&nbsp;self&nbsp;as&nbsp;a&nbsp;function.</span></dd></dl>
+
+<dl><dt><a name="Action-__init__"><strong>__init__</strong></a>(self, name: str, action_fn: Callable[[Any, Any], NoneType])</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {'action_fn': typing.Callable[[typing.Any, typing.Any], NoneType], 'name': &lt;class 'str'&gt;}</dl>
+
+<hr>
+Data descriptors inherited from <a href="domain.action.html#ActionCallable">ActionCallable</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</span></dd>
+</dl>
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="ActionCallable">class <strong>ActionCallable</strong></a>(<a href="builtins.html#object">builtins.object</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code">Represents&nbsp;an&nbsp;abstract&nbsp;action&nbsp;that&nbsp;is&nbsp;performed&nbsp;by&nbsp;runner.<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn">Methods defined here:<br>
+<dl><dt><a name="ActionCallable-__call__"><strong>__call__</strong></a>(self, config: Any, state: Any)</dt><dd><span class="code">Call&nbsp;self&nbsp;as&nbsp;a&nbsp;function.</span></dd></dl>
+
+<dl><dt><a name="ActionCallable-__init__"><strong>__init__</strong></a>(self)</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</span></dd>
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {}</dl>
+
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="AggregateAction">class <strong>AggregateAction</strong></a>(<a href="domain.action.html#ActionCallable">ActionCallable</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#AggregateAction">AggregateAction</a>(name:&nbsp;str,&nbsp;actions:&nbsp;list[domain.action.<a href="#ActionCallable">ActionCallable</a>])<br>
+&nbsp;<br>
+Represents&nbsp;an&nbsp;aggregate&nbsp;action&nbsp;that&nbsp;is&nbsp;performed&nbsp;by&nbsp;runner.<br>
+&nbsp;<br>
+Attributes:<br>
+name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;name&nbsp;of&nbsp;the&nbsp;action&nbsp;displayed&nbsp;in&nbsp;UI<br>
+actions&nbsp;&nbsp;&nbsp;A&nbsp;list&nbsp;of&nbsp;actions&nbsp;to&nbsp;choose&nbsp;from<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="domain.action.html#AggregateAction">AggregateAction</a></dd>
+<dd><a href="domain.action.html#ActionCallable">ActionCallable</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="AggregateAction-__call__"><strong>__call__</strong></a>(self, config: Any, state: Any) -&gt; None</dt><dd><span class="code">Call&nbsp;self&nbsp;as&nbsp;a&nbsp;function.</span></dd></dl>
+
+<dl><dt><a name="AggregateAction-__init__"><strong>__init__</strong></a>(self, name: str, actions: list[domain.action.ActionCallable])</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__annotations__</strong> = {'actions': list[domain.action.ActionCallable], 'name': &lt;class 'str'&gt;}</dl>
+
+<hr>
+Data descriptors inherited from <a href="domain.action.html#ActionCallable">ActionCallable</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</span></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor functions-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Functions</strong></td></tr>
+    
+<tr><td class="decor functions-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt><a name="-fmt_action"><strong>fmt_action</strong></a>(action: domain.action.Action) -&gt; str</dt></dl>
+ <dl><dt><a name="-request_action"><strong>request_action</strong></a>(action_list: list[domain.action.ActionCallable]) -&gt; domain.action.ActionCallable</dt></dl>
+</td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>ActionFn</strong> = typing.Callable[[typing.Any, typing.Any], NoneType]<br>
+<strong>Callable</strong> = typing.Callable</td></tr></table>
+</body></html>

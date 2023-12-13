@@ -1,0 +1,67 @@
+@startuml
+
+!theme vibrant
+
+hide empty
+hide empty members
+hide empty attributes
+hide empty methods
+
+package domain.types {
+	circle Config
+	circle State
+	circle ActionFn
+}
+
+package domain.action {
+	abstract class ActionCallable {
+		--
+		__call__(self, config: Config, state: State)
+	}
+
+	class Action {
+		name: str
+		action_fn: ActionFn
+		--
+		__call__(self, config: Config, state: State)
+	}
+
+	class AggregateAction {
+		name: str
+		action_fn: list[ActionCallable]
+		--
+		__call__(self, config: Config, state: State)
+	}
+}
+
+package domain.runner {
+	class AppBase {
+		config: Config
+		actions: list[ActionCallable]
+		state: State
+		--
+		perform_action(action: ActionCallable)
+	}
+
+	class RunnerOptions <<dataclass>> {
+		continue_prompt_enabled: bool = True
+		repeat: bool = True
+	}
+
+	class Runner {
+		app: AppBase
+		options: RunnerOptions
+		--
+		run_thread()
+		run()
+	}
+}
+
+
+Action -up-^ ActionCallable
+AggregateAction -up-^ ActionCallable
+
+Runner .up.> AppBase
+Runner .up.> RunnerOptions
+
+@enduml

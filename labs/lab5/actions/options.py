@@ -6,11 +6,16 @@ from domain.term_color import InvalidColor, fore, style
 from domain.types import Angle3F, Point3F
 from labs.lab5.domain.config import Config
 from labs.lab5.domain.object_dict import get_object_dict
-from labs.lab5.domain.object_renderer import (ALIGN_CENTER, ALIGN_LEFT,
-                                              ALIGN_RIGHT)
+from labs.lab5.domain.object_renderer import ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT
 from labs.lab5.domain.state import AppState
-from std.read import (input_wrapper, read_list_of, read_single_float,
-                      read_single_int, read_until_pred, read_until_pred_custom)
+from std.read import (
+    input_wrapper,
+    read_list_of,
+    read_single_float,
+    read_single_int,
+    read_until_pred,
+    read_until_pred_custom,
+)
 
 
 def object_type_action(_: Config, state: AppState):

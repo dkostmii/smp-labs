@@ -1,7 +1,11 @@
 import unittest
 
-from .operator import (AdditionTests, DivisionTests, MultiplicationTests,
-                       SubtractionTests)
+from .operator import (
+    AdditionTests,
+    DivisionTests,
+    MultiplicationTests,
+    SubtractionTests,
+)
 
 
 def suite():

@@ -3,10 +3,14 @@ from os import get_terminal_size
 from domain.term_color import InvalidColor, fore, style
 from labs.lab4.domain.config import Config
 from labs.lab4.domain.state import AppState
-from labs.lab4.domain.text_renderer import (ALIGN_CENTER, ALIGN_LEFT,
-                                            ALIGN_RIGHT)
-from std.read import (input_wrapper, read_single_float, read_single_int,
-                      read_until_pred, read_until_pred_custom)
+from labs.lab4.domain.text_renderer import ALIGN_CENTER, ALIGN_LEFT, ALIGN_RIGHT
+from std.read import (
+    input_wrapper,
+    read_single_float,
+    read_single_int,
+    read_until_pred,
+    read_until_pred_custom,
+)
 
 
 def text_alignment_action(_: Config, state: AppState):

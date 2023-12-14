@@ -2,10 +2,16 @@ from domain.action import Action, AggregateAction
 
 from .exit_action import exit_action
 from .input_action import input_action
-from .options import (font_size_action, gap_action, set_size_action,
-                      stroke_width_action, symbol_action,
-                      text_alignment_action, text_color_action,
-                      width_factor_action)
+from .options import (
+    font_size_action,
+    gap_action,
+    set_size_action,
+    stroke_width_action,
+    symbol_action,
+    text_alignment_action,
+    text_color_action,
+    width_factor_action,
+)
 from .preview_action import preview_action
 from .save_action import save_action
 

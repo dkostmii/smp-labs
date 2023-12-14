@@ -3,8 +3,14 @@ from collections import Counter
 from matplotlib import pyplot as plt
 
 from std.io import read_csv_df
-from std.read import (read_choose_from_list, read_filename, read_single_int,
-                      read_until_pred, read_until_pred_custom, read_yes_no)
+from std.read import (
+    read_choose_from_list,
+    read_filename,
+    read_single_int,
+    read_until_pred,
+    read_until_pred_custom,
+    read_yes_no,
+)
 
 valid_colors = ["red", "green", "blue", "magenta", "cyan", "yellow"]
 

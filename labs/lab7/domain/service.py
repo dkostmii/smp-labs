@@ -1,7 +1,18 @@
+from typing import Any
+
 import regex
 import requests
 
 from .config import Config
+
+
+def get_keys(keys: list[str], data: dict[str, Any]):
+    result: dict[str, Any] = {}
+
+    for key in keys:
+        result[key] = data[key]
+
+    return result
 
 
 class UserService:
@@ -33,4 +44,12 @@ class UserService:
             message: str = response.json().get("message", "Unknown error occurred!")
             raise ValueError(f"Error occurred! {message}")
         else:
-            return response.json()
+            json = response.json()
+
+            if (
+                isinstance(config.filter_response, list)
+                and len(config.filter_response) > 0
+            ):
+                json = get_keys(config.filter_response, json)
+
+            return json

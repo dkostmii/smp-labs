@@ -1,85 +1,56 @@
-from typing import Any, Callable, Generic, TypeVar
+from typing import Callable, Generic, TypeVar, cast
 
-T = TypeVar("T")
+TOk = TypeVar("TOk")
+TErr = TypeVar("TErr")
 
 
-class Ok:
-    def __init__(self, val):
+class Ok(Generic[TOk]):
+    def __init__(self, val: TOk):
         self.val = val
 
 
-class TypedOk(Generic[T]):
-    val: T
-
-    def __init__(self, val: T):
-        self.val = val
-
-
-class Err:
-    def __init__(self, val):
+class Err(Generic[TErr]):
+    def __init__(self, val: TErr):
         self.val = val
 
     def __repr__(self) -> str:
-        msg = self.val if isinstance(self.val, str) else "Unknown error"
+        msg = repr(self.val)
 
         return f"Error: {msg}"
 
 
-class Result:
-    ok_val: Ok | None
-    err_val: Err | None
-    is_ok: bool
+class Result(Generic[TOk, TErr]):
+    _val: Ok[TOk] | Err[TErr]
 
-    def __init__(self, val):
-        self.is_ok = False
-        match val:
-            case Ok():
-                self.is_ok = True
-                self.ok_val = val
-                self.err_val = None
-            case Err():
-                self.ok_val = None
-                self.err_val = val
-            case _:
-                raise Exception("Expected Ok or Err")
+    @property
+    def is_ok(self):
+        return isinstance(self._val, Ok)
+
+    @property
+    def is_err(self):
+        return isinstance(self._val, Err)
+
+    def __init__(self, val: Ok[TOk] | Err[TErr]):
+        self._val = val
+
+    @property
+    def ok(self) -> TOk | None:
+        if not self.is_ok:
+            return None
+
+        return cast(Ok[TOk], self._val).val
+
+    @property
+    def err(self) -> TErr | None:
+        if not self.is_err:
+            return None
+
+        return cast(Err[TErr], self._val).val
 
     def map(
-        self, ok_accessor: Callable[[Any], None], err_accessor: Callable[[Any], None]
-    ) -> None:
+        self, ok_accessor: Callable[[TOk], None], err_accessor: Callable[[TErr], None]
+    ):
         if self.is_ok:
-            ok_accessor(self.ok_val)
-        else:
-            err_accessor(self.err_val)
-
-
-class TypedResult(Generic[T]):
-    ok_val: TypedOk[T] | None
-    err_val: Err | None
-    is_ok: bool
-
-    def __init__(self, val: TypedOk[T] | Err):
-        self.is_ok = False
-        match val:
-            case TypedOk():
-                self.is_ok = True
-                self.ok_val = val
-                self.err_val = None
-            case Err():
-                self.ok_val = None
-                self.err_val = val
-            case _:
-                raise Exception("Expected TypedOk or Err")
-
-    def map(
-        self,
-        ok_accessor: Callable[[TypedOk], None],
-        err_accessor: Callable[[Err], None],
-    ) -> None:
-        if self.is_ok and isinstance(self.ok_val, TypedOk):
-            ok_accessor(self.ok_val)
-        elif isinstance(self.err_val, Err):
-            err_accessor(self.err_val)
-        else:
-            raise Exception(
-                "Unexpected error. TypedResult must contain either ok_val or err_val."
-            )
+            ok_accessor(cast(TOk, self.ok))
+        elif self.is_err:
+            err_accessor(cast(TErr, self.err))

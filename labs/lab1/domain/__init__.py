@@ -1,10 +1,9 @@
-from . import decimals, history, io, operation, operator, state
+from . import decimals, history, io, operation, state
 
 __all__ = [
     "decimals",
     "history",
     "io",
     "operation",
-    "operator",
     "state",
 ]

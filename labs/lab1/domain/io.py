@@ -4,7 +4,14 @@ from std.read import read_single_float, read_until_pred, read_yes_no
 from std.result import Err, Ok, Result
 
 from .decimals import get_formatter
-from .operator import BinaryOperator, Operator, UnaryOperator, operators
+from .operation import (
+    BinaryOperator,
+    OperationError,
+    OperationResult,
+    Operator,
+    UnaryOperator,
+    operators,
+)
 from .state import CalculatorState
 
 
@@ -53,22 +60,16 @@ def read_op(state: CalculatorState) -> tuple[Operator, tuple[float, ...]]:
     return op, values
 
 
-def display_err(err: Err) -> None:
+def display_err(err: OperationError) -> None:
     print(str(err))
 
 
-def display_val(val: Ok | float, opts: dict[str, Any]) -> None:
+def display_val(val: float, opts: dict[str, Any]) -> None:
     fmt = get_formatter(opts)
-    match val:
-        case Ok():
-            return print(f"=> {fmt(val.val)}")
-        case float():
-            return print(f"=> {fmt(val)}")
-        case _:
-            raise ValueError("Ok or float expected")
+    print(f"=> {fmt(val)}")
 
 
-def display_op_res(val: float | Result, opts: dict[str, Any]) -> None:
+def display_op_res(val: float | OperationResult, opts: dict[str, Any]) -> None:
     match val:
         case Result():
             return val.map(lambda val: display_val(val, opts), display_err)

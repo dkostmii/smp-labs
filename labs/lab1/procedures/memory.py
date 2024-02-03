@@ -1,7 +1,7 @@
 from typing import Any
 
+from labs.lab1.domain.operation import OperationError
 from labs.lab1.domain.state import CalculatorState
-from std.result import Err
 
 
 def clear_memory_proc(_: dict[str, Any], state: CalculatorState) -> None:
@@ -18,7 +18,7 @@ def save_to_memory_proc(_: dict[str, Any], state: CalculatorState):
 
     entry = state.history[-1]
 
-    if entry.result is str or entry.result is Err:
+    if entry.result is str:
         print(
             "Last operation has error. Please perform new operation to save to memory."
         )

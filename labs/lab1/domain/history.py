@@ -1,7 +1,8 @@
 import json
 from typing import Any
 
-from .operation import OperationError, Operator, fmt_operation, get_operator, get_symbol
+from domain.operation import (OperationError, Operator, fmt_operation,
+                              get_operator, get_symbol)
 
 
 class HistoryEntry:

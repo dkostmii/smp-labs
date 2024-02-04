@@ -1,6 +1,5 @@
 from typing import Any
 
-from labs.lab1.domain.operation import OperationError
 from labs.lab1.domain.state import CalculatorState
 
 

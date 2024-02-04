@@ -1,10 +1,10 @@
 from typing import Any
 
+from domain.decimals import get_formatter
+from domain.operation import BinaryOperator, Operator, UnaryOperator, operators
 from std.read import read_single_float, read_until_pred, read_yes_no
 from std.result import Err, Ok, Result
 
-from .decimals import get_formatter
-from .operator import BinaryOperator, Operator, UnaryOperator, operators
 from .state import CalculatorState
 
 

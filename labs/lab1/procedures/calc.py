@@ -1,10 +1,10 @@
 from typing import Any
 
+from domain.operation import apply_op
 from labs.lab1.domain.history import HistoryEntry
 from labs.lab1.domain.io import display_op_res, read_op
-from labs.lab1.domain.operation import apply_op
 from labs.lab1.domain.state import CalculatorState
-from std.result import Err, Ok, Result
+from std.result import Result
 
 
 def do_calculation_proc(opts: dict[str, Any], state: CalculatorState) -> None:

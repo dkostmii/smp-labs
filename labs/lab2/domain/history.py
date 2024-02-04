@@ -1,27 +1,32 @@
 import json
 from typing import Any
 
-from std.result import Err
-
-from .operation import fmt_operation
-from .operator import Operator, get_operator, get_symbol
+from domain.operation import (OperationError, Operator, fmt_operation,
+                              get_operator, get_symbol)
 
 
 class HistoryEntry:
+    result: float | str
+    operator: Operator
+    values: tuple[float, ...]
+
     def __init__(
-        self, operator: Operator, values: tuple[float, ...], result: float | Err
+        self,
+        operator: Operator,
+        values: tuple[float, ...],
+        result: float | OperationError,
     ):
         self.operator = operator
         self.values = values
 
-        parsed_result: str | float = repr(Err(val=None))
-
-        if isinstance(result, Err):
-            parsed_result = repr(result)
+        if isinstance(result, OperationError):
+            parsed_result = str(result)
         elif isinstance(result, float):
             parsed_result = float(result)
         else:
-            raise Exception(f"Unexpected result type: {type(result)}")
+            raise Exception(
+                f"Unexpected result type: {type(result)}. Expected either float or OperationError."
+            )
 
         self.result = parsed_result
 
@@ -43,7 +48,7 @@ class HistoryEntry:
         result = dictionary["result"]
 
         if isinstance(result, str):
-            result = Err(val=result.replace("Error: ", ""))
+            result = OperationError.from_message(message=result)
 
         return HistoryEntry(operator=operator, values=values, result=result)
 

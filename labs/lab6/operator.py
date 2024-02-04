@@ -1,8 +1,8 @@
 import unittest
+from typing import cast
 
-from labs.lab2.domain.operation import apply_op
-from labs.lab2.domain.operator import operators
-from std.result import Err, Ok, Result
+from domain.operation import OperationError, apply_op, operators
+from std.result import Result
 
 
 class AdditionTests(unittest.TestCase):
@@ -54,20 +54,24 @@ class DivisionTests(unittest.TestCase):
     def _div_test(self, a: float, b: float):
         actual = apply_op(operators["/"], (a, b))
         self.assertIsInstance(actual, Result)
+        actual = cast(Result[float, OperationError], actual)
 
         if b == 0:
             self.assertFalse(actual.is_ok)
-            self.assertIs(actual.ok_val, None)
-            self.assertIsInstance(actual.err_val, Err)
-            self.assertEqual(actual.err_val.val, "Cannot divide by zero.")
+            self.assertIsNone(actual.ok)
+            self.assertIsInstance(actual.err, OperationError)
+            op_err = cast(OperationError, actual.err)
+            self.assertEqual(op_err.message, "Cannot divide by zero.")
+            self.assertEqual(str(op_err), "Operation error: Cannot divide by zero.")
 
             return
 
         expected = a / b
         self.assertTrue(actual.is_ok)
-        self.assertIs(actual.err_val, None)
-        self.assertIsInstance(actual.ok_val, Ok)
-        self.assertEqual(actual.ok_val.val, expected)
+        self.assertIsNone(actual.err)
+        self.assertIsInstance(actual.ok, float)
+        op_ok = cast(float, actual.ok)
+        self.assertEqual(op_ok, expected)
 
     def div_positive_test(self):
         self._div_test(a=2, b=8)

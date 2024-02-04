@@ -1,17 +1,11 @@
 from typing import Any
 
+from domain.decimals import get_formatter
+from domain.operation import (BinaryOperator, OperationError, OperationResult,
+                              Operator, UnaryOperator, operators)
 from std.read import read_single_float, read_until_pred, read_yes_no
-from std.result import Err, Ok, Result
+from std.result import Result
 
-from .decimals import get_formatter
-from .operation import (
-    BinaryOperator,
-    OperationError,
-    OperationResult,
-    Operator,
-    UnaryOperator,
-    operators,
-)
 from .state import CalculatorState
 
 

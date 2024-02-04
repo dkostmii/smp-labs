@@ -1,4 +1,4 @@
-from domain.action import Action, ActionCallable
+from domain.action import ActionCallable
 from domain.runner import AppBase
 from labs.lab2.config.opts import read_opts
 
@@ -10,6 +10,6 @@ class Calculator(AppBase):
         super().__init__(config=read_opts(), actions=actions)
         self.state = CalculatorState()
 
-    def perform_action(self, action: Action):
+    def perform_action(self, action: ActionCallable):
         config_opts = read_opts("config/.calcrc.json")
         action(config=config_opts, state=self.state)

@@ -7,7 +7,7 @@ from .state import CalculatorState
 
 class Calculator(AppBase):
     def __init__(self, actions: list[ActionCallable]):
-        super().__init__(config=read_opts(), actions=actions)
+        super().__init__(config=read_opts("config/.calcrc.json"), actions=actions)
         self.state = CalculatorState()
 
     def perform_action(self, action: ActionCallable):

@@ -1,7 +1,8 @@
 from dataclasses import dataclass
 from math import cos, sin
 
-from domain.geometry import get_line_length, get_lines, is_on_line, scale_vertices
+from domain.geometry import (get_line_length, get_lines, is_on_line,
+                             scale_vertices)
 from domain.types import Angle3F, Point, Point3F, Size, Trace
 from std.math import sign
 

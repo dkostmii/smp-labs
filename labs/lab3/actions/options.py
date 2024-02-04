@@ -5,13 +5,8 @@ from colored.exceptions import InvalidColor, InvalidHexColor
 
 from labs.lab3.domain.config import Config
 from labs.lab3.domain.state import AppState
-from std.read import (
-    input_wrapper,
-    read_choose_from_list,
-    read_single_int,
-    read_until_pred,
-    read_until_pred_custom,
-)
+from std.read import (input_wrapper, read_choose_from_list, read_single_int,
+                      read_until_pred, read_until_pred_custom)
 
 
 def font_action(config: Config, state: AppState):

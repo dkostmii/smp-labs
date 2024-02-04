@@ -1,18 +1,11 @@
 from domain.action import Action, AggregateAction
 
 from .exit_action import exit_action
-from .options import (
-    camera_angle_action,
-    camera_display_surface_action,
-    camera_position_action,
-    object_type_action,
-    set_object_size_action,
-    set_size_action,
-    stroke_width_action,
-    symbol_action,
-    text_alignment_action,
-    text_color_action,
-)
+from .options import (camera_angle_action, camera_display_surface_action,
+                      camera_position_action, object_type_action,
+                      set_object_size_action, set_size_action,
+                      stroke_width_action, symbol_action,
+                      text_alignment_action, text_color_action)
 from .preview_action import preview_action
 from .save_action import save_action
 

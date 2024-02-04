@@ -2,7 +2,8 @@ from domain.action import Action, AggregateAction
 
 from .exit_action import exit_action
 from .input_action import input_action
-from .options import font_action, set_size_action, symbol_action, text_color_action
+from .options import (font_action, set_size_action, symbol_action,
+                      text_color_action)
 from .preview_action import preview_action
 from .save_action import save_action
 

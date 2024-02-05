@@ -1,0 +1,16 @@
+{
+  "X_RapidApi_Key": "TO_BE_MODIFIED",
+  "X_RapidApi_Host": "instagram130.p.rapidapi.com",
+  "endpoints": {
+    "get_personal_profile": "https://instagram130.p.rapidapi.com/account-info"
+  },
+  "filter_response": [
+    "id",
+    "biography",
+    "full_name",
+    "is_business_account",
+    "category_name",
+    "is_private",
+    "username"
+  ]
+}

@@ -1,6 +1,4 @@
-@startuml
-
-!theme vibrant
+@startuml "Domain class diagram"
 
 hide empty
 hide empty members

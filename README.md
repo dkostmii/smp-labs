@@ -6,6 +6,8 @@ Special programming languages course (LPNU).
 The goal of this course is to learn basic Python
 capabilities for CLI application creation.
 
+For the configuration details, proceed to [Configuration README](./config/README.md)
+
 ## Summary of labs
 
 | Lab   | Summary                                                          |
@@ -19,3 +21,13 @@ capabilities for CLI application creation.
 | Lab 7 | Making API requests with unit tests                              |
 | Lab 8 | Manipulating table data and visualizing it (Matplotlib)          |
 | Lab 9 | Project refactoring, generating documentation, creating classlib |
+
+## Makefile
+
+`Makefile` is used to build the documentation and diagrams.
+The next targets are provided:
+
+- `docs` - builds the documentation
+- `diagrams` - builds the diagrams
+
+By default, `make` runs both targets.
